@@ -11,7 +11,6 @@ const pool = mysql.createPool({
     connectionLimit: 10,
     queueLimit: 10
 })
-
 // Menggunakan promise wrapper agar bisa memakai async/await nantinya
 const db = pool.promise()
 

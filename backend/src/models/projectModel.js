@@ -8,7 +8,7 @@ const getAllProjects = async () => {
 
 // FUNGSI 2: Mengambil SATU Proyek Berdasarkan ID
 const getProjectById = async (id) => {
-    const [rows] = await db.query('SELECT * FROM project WHERE id = ?', [id])
+    const [rows] = await db.query('SELECT * FROM projects WHERE id = ?', [id])
     return rows[0];
 }
 

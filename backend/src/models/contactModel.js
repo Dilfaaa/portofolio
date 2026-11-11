@@ -9,7 +9,7 @@ const getAllContacts = async () => {
 //GET BY ID
 const getContactById = async (id) => {
     const [rows] = await db.query('SELECT * FROM messages WHERE id = ?', [id])
-    return rows[0]
+    return rows[0]      
 }
 
 //TAMBAH DATA

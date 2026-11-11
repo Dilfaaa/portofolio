@@ -2,6 +2,7 @@
 const express = require('express');
 const dotenv = require('dotenv');
 const cors = require('cors');
+const path = require('path');
 
 // 2. Load file konfigurasi .env
 dotenv.config();
@@ -17,6 +18,7 @@ const PORT = process.env.PORT || 5000;
 app.use(cors()); // Mengizinkan request dari domain lain (frontend)
 app.use(express.json()); // Membaca body request bertipe JSON
 app.use(express.urlencoded({ extended: true })); // Membaca body request bertipe form-data
+app.use('/uploads', express.static(path.join(__dirname, '../public/uploads'))); // Menyajikan file upload (CV, gambar, dll)
 
 // 5. Endpoint dasar (Testing Server)
 app.get('/',(req, res) => {
@@ -53,13 +55,22 @@ const profileRoutes = require('./routes/profileRoutes');
 const projectRoutes = require('./routes/projectRoutes');
 const skillRoutes = require('./routes/skillRoutes');
 const experienceRoutes = require('./routes/experienceRoutes');
-const contactRoutes = require('./routes/contactRoute')
+const contactRoutes = require('./routes/contactRoutes')
+const certificateRoutes = require('./routes/certificateRoutes')
+const testimoniRoutes = require('./routes/testimoniRoutes')
+const resumeRoutes = require('./routes/resumeRoutes')
+const authRoutes = require('./routes/authRoutes')
 
 app.use('/api/profile', profileRoutes);
 app.use('/api/projects', projectRoutes);
 app.use('/api/skills', skillRoutes);
 app.use('/api/experiences', experienceRoutes);
 app.use('/api/contacts', contactRoutes)
+app.use('/api/certificates', certificateRoutes)
+app.use('/api/testimoni', testimoniRoutes)
+app.use('/api/resumes', resumeRoutes) 
+app.use('/api/auth', authRoutes) 
+
 
 // 6. Middleware untuk menangani route yang tidak ditemukan (404 not found)
 app.use((req, res) => {
